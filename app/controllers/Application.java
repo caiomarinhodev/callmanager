@@ -274,29 +274,25 @@ public class Application extends Controller {
         cpf = r.get("q");
 
         List<Cliente> lclientes = Sistema.getListaGeralDeClientes();
-        List<Chamada> lchamadas = Sistema.getListaDeChamadasGeraldoUsuario(u);
+
+        List<Chamada> lchamadas = new ArrayList<>();
 
         for (Cliente cliente : lclientes) {
             if (cliente.getNome().contains(nome) || cliente.getNome().toLowerCase().contains(nome)) {
-                Long id = Sistema.getChamadaPorClienteID(cliente.getId()).getId();
-                return redirect("/chamadas/update/" + id);
+                lchamadas.add(Sistema.getChamadaPorClienteID(cliente.getId()));
+            }else if(cliente.getCep()!=null && cliente.getCep().equals(cep)) {
+                lchamadas.add(Sistema.getChamadaPorClienteID(cliente.getId()));
+            }else if(cliente.getCpf()!=null && cliente.getCpf().equals(cpf)) {
+                lchamadas.add(Sistema.getChamadaPorClienteID(cliente.getId()));
+            }else if((cliente.getNumero1()!=null && cliente.getNumero1().equals(numero1))) {
+                lchamadas.add(Sistema.getChamadaPorClienteID(cliente.getId()));
+            }else if(cliente.getNumero2()!=null && cliente.getNumero2().equals(numero2)) {
+                lchamadas.add(Sistema.getChamadaPorClienteID(cliente.getId()));
             }
-            if (cliente.getCep()!=null && cliente.getCep().equals(cep)) {
-                Long id = Sistema.getChamadaPorClienteID(cliente.getId()).getId();
-                return redirect("/chamadas/update/" + id);
-            }
-            if (cliente.getCpf()!=null && cliente.getCpf().equals(cpf)) {
-                Long id = Sistema.getChamadaPorClienteID(cliente.getId()).getId();
-                return redirect("/chamadas/update/" + id);
-            }
-            if (cliente.getNumero1()!=null && cliente.getNumero1().equals(numero1)) {
-                Long id = Sistema.getChamadaPorClienteID(cliente.getId()).getId();
-                return redirect("/chamadas/update/" + id);
-            }
-            if (cliente.getNumero2()!=null && cliente.getNumero2().equals(numero2)) {
-                Long id = Sistema.getChamadaPorClienteID(cliente.getId()).getId();
-                return redirect("/chamadas/update/" + id);
-            }
+        }
+
+        if(lchamadas.size()>0){
+            return ok(dashUserSearchFilter.render(u,lchamadas));
         }
         return renderError();
 

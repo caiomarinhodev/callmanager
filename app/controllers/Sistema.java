@@ -43,6 +43,8 @@ public class Sistema {
         }
     }
 
+
+
     @Transactional
     public static void removeRecado(Long id){
         Recado r = getRecado(id);
