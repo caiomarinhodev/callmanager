@@ -1,0 +1,288 @@
+@(usuario: Usuario, usuarios: List[Usuario])
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>@Sistema.getNomeDaEmpresa | Dashboard</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+            <!-- Bootstrap 3.3.2 -->
+        <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+            <!-- FontAwesome 4.3.0 -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+            <!-- Ionicons 2.0.0 -->
+        <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+            <!-- Theme style -->
+        <link href="/assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+            <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+        <link href="/assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+            <!-- iCheck -->
+        <link href="/assets/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+            <!-- bootstrap wysihtml5 - text editor -->
+        <link href="/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <body class="skin-yellow">
+        <div class="wrapper">
+
+            <header class="main-header">
+                    <!-- Logo -->
+                <a href="#" class="logo"><b>@Sistema.getNomeDaEmpresa</b></a>
+                    <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                        <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                            <!--<span class="sr-only">Toggle navigation</span>-->
+                    </a>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                                <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="@usuario.getUrl_foto" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">@usuario.getNome</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                        <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="@usuario.getUrl_foto" class="img-circle" alt="User Image" />
+                                        <p>
+                                        @usuario.getNome
+                                        </p>
+                                    </li>
+                                        <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="/block" class="btn btn-default btn-flat">Bloquear</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="/logout" class="btn btn-default btn-flat">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+                <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                    <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                        <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="@usuario.getUrl_foto" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>@usuario.getNome</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                        <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MENU</li>
+                        <li>
+                            <a href="/admin/chamadas/1">
+                                <i class="fa fa-phone-square"></i> <span>Chamadas</span>
+                            </a>
+                        </li>
+                        <li><a href="/admin/clientes/1"><i class="fa fa-bar-chart-o text-warning"></i>Clientes</a></li>
+                        <li><a href="/admin/operadores"><i class="fa fa-rocket text-info"></i>Operadores</a></li>
+                        <li><a href="/admin/add"><i class="fa fa-plus-square text-danger"></i>
+                            Add Produto</a></li>
+                        <li class="active treeview"><a href="/admin/users"><i class="fa fa-users"></i>Usuários</a> </li>
+                        <li><a href="/admin/recados/inbox/1"><i class="fa fa-comments text-purple"></i>Recados</a></li>
+                    </ul>
+                </section>
+                    <!-- /.sidebar -->
+            </aside>
+
+                <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                    <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                        <small>Usuários</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Usuários</li>
+                    </ol>
+                </section>
+
+                    <!-- Main content -->
+                <section class="content">
+                        <!-- Main row -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Lista de Usuários</h3>
+                                </div>
+                                    <!-- /.box-header -->
+                                <div class="box-body no-padding">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th style="width : 10 px">#</th>
+                                            <th>Usuário</th>
+                                            <th>Email</th>
+                                            <th>Senha</th>
+                                            <th style="width : 15 px">?</th>
+                                        </tr>
+                                        @for(u <- usuarios) {
+                                            <tr>
+                                                <td>@u.getId</td>
+                                                <td>@u.getNome</td>
+                                                <td>
+                                                @u.getEmail
+                                                </td>
+                                                <td>@u.getSenha</td>
+                                                <td><a href="/admin/users/remove/@u.getId"><i class="fa fa-trash"></i></a></td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+                                    <!-- /.box-body -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="box box-primary collapsed-box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Usuários</h3>
+                                    <div class="box-tools pull-right">
+                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <ul class="products-list product-list-in-box">
+                                    @for(user <- usuarios) {
+                                        <li class="item">
+                                            <div class="product-img">
+                                                <img src="@user.getUrl_foto" class="user-image" alt="User Image"/>
+                                            </div>
+                                            <div class="product-info">
+                                                <a href="#" class="product-title">@user.getNome <span class="label label-warning pull-right" data-fgColor="@Sistema.gerColorRandom()">
+                                                @Sistema.getListaDeChamadasGeraldoUsuario(user).size()</span></a>
+                                                <span class="product-description">
+                                                @user.getEmail
+                                                </span>
+                                            </div>
+                                        </li> <!-- /.item -->
+                                    }
+                                    </ul>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+
+                        </div>
+
+                    </div><!-- /.box -->
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-3">
+                                <!-- Info Boxes Style 2 -->
+                            <div class="info-box bg-yellow">
+                                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">LIMITE BD</span>
+                                    <span class="info-box-number">10 K</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width : 50 %"></div>
+                                    </div>
+                                </div><!-- /.info-box-content -->
+                            </div>
+                        </div><!-- /.info-box -->
+                        <div class="col-md-3">
+                            <div class="info-box bg-green">
+                                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">USADO</span>
+                                    <span class="info-box-number">@Sistema.getUsedBD Rows</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width : @Sistema.getPercentUsedBD %"></div>
+                                    </div>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box bg-red">
+                                <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">BD Livre</span>
+                                    <span class="info-box-number">@Sistema.getPercentFree <sup style="font-size : 20 px">
+                                        %</sup></span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width : @Sistema.getPercentFree %"></div>
+                                    </div>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Direct Messages</span>
+                                    <span class="info-box-number">@Sistema.getListaDeRecadosGeral.size()</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width : 40 %"></div>
+                                    </div>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                    </div><!-- /.col -->
+                </section>
+            </div>
+
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
+                </div>
+                <strong>Copyright &copy; 2015-2016 <a href="#">Freelancer Studio</a>.</strong> All rights reserved.
+            </footer>
+        </div><!-- ./wrapper -->
+
+        <!-- jQuery 2.1.3 -->
+        <script src="/assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+            <!-- jQuery UI 1.11.2 -->
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+            <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+        $.widget.bridge ( 'uibutton', $.ui.button ) ;
+        </script>
+            <!-- Bootstrap 3.3.2 JS -->
+        <script src="/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <!-- Morris.js charts -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+            <!-- Sparkline -->
+        <script src="/assets/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+            <!-- Bootstrap WYSIHTML5 -->
+        <script src="/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+            <!-- iCheck -->
+        <script src="/assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+            <!-- Slimscroll -->
+        <script src="/assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <!-- FastClick -->
+        <script src='/assets/plugins/fastclick/fastclick.min.js'></script>
+            <!-- AdminLTE App -->
+        <script src="/assets/dist/js/app.min.js" type="text/javascript"></script>
+
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="/assets/dist/js/pages/dashboard.js" type="text/javascript"></script>
+
+            <!-- AdminLTE for demo purposes -->
+        <script src="/assets/dist/js/demo.js" type="text/javascript"></script>
+    </body>
+</html>

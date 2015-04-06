@@ -1,0 +1,52 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                 controllers.Application.index
+GET         /register                         controllers.Application.renderRegister
+GET         /logout                           controllers.Application.logout
+GET         /block                            controllers.Application.telaBloqueio
+GET         /chamadas/add                     controllers.Application.renderAdd
+GET         /chamadas/update/:id              controllers.Application.renderUpdateChamada(id: Long)
+GET         /chamadas/pendentes/:i            controllers.Application.renderListChamadasPendentesDoUsuario(i: Integer)
+GET         /chamadas/list/:i                 controllers.Application.renderListChamadasGeralDoUsuario(i: Integer)
+GET         /chamadas/search                  controllers.Application.search
+GET         /chamadas/search/error            controllers.Application.renderError
+GET         /trocarfoto                       controllers.Application.renderTrocarfoto
+GET         /recados/inbox/:i                 controllers.Application.renderRecadosInboxUsuario(i: Integer)
+GET         /recados/escrever                 controllers.Application.renderComposerRecado
+GET         /recados/ler/:i                   controllers.Application.lerRecado(i: Long)
+
+GET         /admin/chamadas/:i                controllers.Application.renderListChamadasGeralAdmin(i: Integer)
+GET         /admin/clientes/:i                controllers.Application.renderListClientesGeralAdmin(i: Integer)
+GET         /admin/chamadas/update/:id        controllers.Application.renderUpdateChamadaAdmin(id: Long)
+GET         /admin/operadores                 controllers.Application.renderOperadores
+GET         /admin/print                      controllers.Application.renderprint
+GET         /admin/add                        controllers.Application.renderAddPlano
+GET         /admin/remove/:i                  controllers.Application.removePlano(i: Long)
+GET         /admin/users                      controllers.Application.renderUsersControl
+GET         /admin/users/remove/:i            controllers.Application.deleteUsuario(i: Long)
+GET         /admin/recados/inbox/:i           controllers.Application.renderRecadosInboxAdmin(i: Integer)
+GET         /admin/recados/escrever           controllers.Application.renderComposerRecadoAdmin
+GET         /admin/recados/ler/:i             controllers.Application.lerRecadoAdmin(i: Long)
+
+
+
+
+POST        /signin                           controllers.Application.register
+POST        /auth                             controllers.Application.auth
+POST        /enter                            controllers.Application.enter
+POST        /addchamada                       controllers.Application.addChamada
+POST        /admin/add/plano                  controllers.Application.addPlano
+POST        /chamadas/update/new              controllers.Application.updateChamada
+POST        /trocarfoto/trocar                controllers.Application.trocarFoto
+POST        /recados/enviar                   controllers.Application.composerRecado
+POST        /admin/recados/enviar             controllers.Application.composerRecadoAdmin
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                     controllers.Assets.at(path="/public/assets/", file)
+
+    
